@@ -2,6 +2,11 @@
 
 All notable changes to `deploynow-skill` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.1] - 2026-06-01
+
+### Fixed
+- YAML parse error in `deploy-now-phalcon` description (the phrase "IMPORTANT: Phalcon requires..." was being read as a YAML mapping). Replaced with "Warning — Phalcon requires...". This unblocked `npx skills add --skill deploy-now-phalcon` and bumped discovery count from 11 to 12 skills.
+
 ## [0.2.0] - 2026-06-01
 
 ### Added
