@@ -6,6 +6,11 @@ All notable changes to `deploynow-skill` are documented here. Format: [Keep a Ch
 
 ### Fixed
 - YAML parse error in `deploy-now-phalcon` description (the phrase "IMPORTANT: Phalcon requires..." was being read as a YAML mapping). Replaced with "Warning — Phalcon requires...". This unblocked `npx skills add --skill deploy-now-phalcon` and bumped discovery count from 11 to 12 skills.
+- Renamed `skills/deploy-now-codeigniter4/templates/workflow-customization.yaml` to `.md` because the file is a commented snippet reference (not a valid standalone YAML config). Snyk IaC parser rejected it with SNYK-CLI-0012. Updated SKILL.md and customize-generated-workflow.md references.
+
+### Security
+- Ran Snyk IaC v1.1305.0 + Trivy MCP (misconfig + secret scans) on the catalog. Snyk IaC does not recognize Deploy Now's `config.yaml` schema (no rules for IONOS Deploy Now), so it returned 0 valid IaC files. Trivy reported 0 misconfigurations and 0 secrets. Manual audit found 0 hardcoded credentials, 0 `chmod 777`, 0 risky post-deploy commands, and 2 `http://` references (both in documentation explaining why to use HTTPS).
+- CI4's `.htaccess` is the only template with full hardening (dotfile blocking, `-Indexes`, `X-Powered-By` unset). Other frameworks' `.htaccess` templates only handle URL rewriting.
 
 ## [0.2.0] - 2026-06-01
 
