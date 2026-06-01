@@ -1,6 +1,6 @@
 ---
 name: deploy-now-phalcon
-description: Deploy Phalcon applications to IONOS Deploy Now. Phalcon is NOT officially detected by Deploy Now (only Laravel and Symfony are per docs.ionos.space), so this skill configures Phalcon as a generic PHP project. Use when the user wants to deploy Phalcon 5 to Deploy Now, needs to set public/ as the publish directory, configure .htaccess with the Phalcon rewrite rules (_url parameter), write .deploy-now/<project>/config.yaml, or troubleshoot Phalcon routing on Deploy Now. IMPORTANT: Phalcon requires the phalcon PHP extension — verify Deploy Now supports it before proceeding.
+description: Deploy Phalcon applications to IONOS Deploy Now. Phalcon is NOT officially detected by Deploy Now (only Laravel and Symfony are per docs.ionos.space), so this skill configures Phalcon as a generic PHP project. Use when the user wants to deploy Phalcon 5 to Deploy Now, needs to set public/ as the publish directory, configure .htaccess with the Phalcon rewrite rules (_url parameter), write .deploy-now/<project>/config.yaml, or troubleshoot Phalcon routing on Deploy Now. Warning — Phalcon requires the phalcon PHP extension; verify Deploy Now supports it before proceeding.
 metadata:
   author: liusc45
   category: deployment
