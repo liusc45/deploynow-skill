@@ -1,0 +1,38 @@
+# Path in user repo:    .deploy-now/<project>/public/.htaccess.template
+# Path on the runtime:  public/.htaccess
+# Purpose: route all requests within the document root to public/index.php
+# Adapted from the standard CodeIgniter 4 public/.htaccess.
+
+Options -Indexes +FollowSymlinks
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Rewrite "www.example.com -> example.com"
+    # Uncomment after attaching your custom domain.
+    # RewriteCond %{HTTPS} !=on
+    # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+    # Send all requests not pointing to an actual file or directory
+    # to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Block hidden files in public/
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

@@ -1,0 +1,27 @@
+# Path in user repo:    .deploy-now/<project>/.htaccess.template
+# Path on the runtime:  .htaccess  (in $HOME/htdocs/, repo root)
+# Purpose: redirect all traffic to public/index.php so app/, system/, writable/
+# stay outside the document root.
+# Source: https://docs.ionos.space/docs/apache-configuration-htaccess/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send everything that does not target an existing file or directory
+    # into public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php/$1 [L]
+</IfModule>
+
+# Block direct access to dot-files (.env, .git, etc.)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Hide PHP version
+Header unset X-Powered-By

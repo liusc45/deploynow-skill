@@ -1,0 +1,40 @@
+# Path in user repo: .deploy-now/<project>/config.yaml
+# Workflow v2 — Symfony
+# Source: https://github.com/ionos-deploy-now/symfony-starter
+
+bootstrap:
+  excludes:
+    - tests
+    - .editorconfig
+    - README.md
+    - phpunit.xml.dist
+    - docker-compose.yml
+
+recurring:
+  excludes:
+    # Persist runtime artifacts across deploys
+    - var/cache
+    - var/log
+    - var/sessions
+    - var/data           # SQLite or file-based storage if used
+    - public/uploads
+    - public/bundles     # Symfony bundles assets (warmup re-creates)
+
+pre-deployment-remote-commands:
+  - echo "Starting Symfony deployment"
+
+post-deployment-remote-commands:
+  - php8.2-cli bin/console cache:clear --env=prod
+  - php8.2-cli bin/console doctrine:migrations:migrate --no-interaction
+  - php8.2-cli bin/console cache:warmup --env=prod
+  # AssetMapper: uncomment if using Symfony AssetMapper
+  # - php8.2-cli bin/console asset-map:compile
+  # Webpack Encore: assets are built during the GitHub Actions build step, no runtime step needed
+  # Unhide bundles if not using Encore:
+  # - php8.2-cli bin/console assets:install public
+
+runtime:
+  cron-jobs: []
+    # Example — uncomment and adapt:
+    # - command: php8.2-cli $HOME/htdocs/bin/console app:scheduled-task
+    #   schedule: '0 3 * * *'

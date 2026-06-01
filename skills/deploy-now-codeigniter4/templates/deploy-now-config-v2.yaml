@@ -1,0 +1,53 @@
+# Path in user repo: .deploy-now/<project>/config.yaml
+# Workflow v2 — current default for projects created since 11/2022.
+# Source: https://docs.ionos.space/docs/deployment-configuration/
+# Source: https://docs.ionos.space/docs/runtime-configuration/
+
+# ---------------------------------------------------------------------------
+# Excludes
+# Default excludes already applied by Deploy Now: logs, .deploy-now, .git, .github
+# Add anything else you want excluded from the upload.
+# ---------------------------------------------------------------------------
+bootstrap:
+  excludes:
+    - tests
+    - .editorconfig
+    - phpunit.xml.dist
+    - README.md
+    - docker-compose.yml
+
+recurring:
+  excludes:
+    # Persist user uploads and runtime caches across deployments
+    # so they are NOT overwritten by the next deploy.
+    - public/uploads
+    - writable/uploads
+    - writable/cache
+    - writable/logs
+    - writable/session
+    - writable/debugbar
+
+# ---------------------------------------------------------------------------
+# Remote commands
+# Executed on the IONOS runtime by Deploy Now.
+# Working directory at runtime: $HOME/htdocs/
+# Use the explicit PHP CLI binary: php8.2-cli (or your chosen version).
+# ---------------------------------------------------------------------------
+pre-deployment-remote-commands:
+  - echo "Starting CodeIgniter 4 deployment"
+
+post-deployment-remote-commands:
+  - php8.2-cli spark cache:clear
+  # Run database migrations after each deploy. Uncomment when you have reviewed
+  # the impact on production data:
+  # - php8.2-cli spark migrate --all
+
+# ---------------------------------------------------------------------------
+# Cron jobs
+# Source: https://docs.ionos.space/docs/cronjobs/
+# ---------------------------------------------------------------------------
+runtime:
+  cron-jobs: []
+    # Example — uncomment and adapt:
+    # - command: php8.2-cli $HOME/htdocs/spark tasks:run
+    #   schedule: '*/5 * * * *'

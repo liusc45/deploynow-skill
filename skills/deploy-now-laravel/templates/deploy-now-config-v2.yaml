@@ -1,0 +1,43 @@
+# Path in user repo: .deploy-now/<project>/config.yaml
+# Workflow v2 — Laravel
+# Source: https://github.com/ionos-deploy-now/laravel-starter
+
+bootstrap:
+  excludes:
+    - tests
+    - phpunit.xml
+    - .editorconfig
+    - .gitattributes
+    - docker-compose.yml
+    - README.md
+
+recurring:
+  excludes:
+    # Persist user data and runtime caches across deploys
+    - storage/app/public          # symlinked into public/storage
+    - storage/app/uploads
+    - storage/framework/cache
+    - storage/framework/sessions
+    - storage/framework/views
+    - storage/logs
+    - bootstrap/cache             # Laravel will repopulate on first request
+
+pre-deployment-remote-commands:
+  - echo "Starting Laravel deployment"
+
+post-deployment-remote-commands:
+  - php8.2-cli artisan storage:link
+  - php8.2-cli artisan migrate --force --no-interaction
+  - php8.2-cli artisan config:cache
+  - php8.2-cli artisan route:cache
+  - php8.2-cli artisan view:cache
+  - php8.2-cli artisan event:cache
+  # Optional:
+  # - php8.2-cli artisan optimize
+  # - php8.2-cli artisan queue:restart
+
+runtime:
+  cron-jobs:
+    # Laravel scheduler — fires every minute, like the docs recommend.
+    - command: php8.2-cli $HOME/htdocs/artisan schedule:run
+      schedule: '* * * * *'
