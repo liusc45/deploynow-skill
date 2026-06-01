@@ -1,0 +1,22 @@
+# .deploy-now/<project>/config.yaml — Laminas / Mezzio
+# Document root: public/
+
+bootstrap:
+  excludes:
+    - test
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - data/cache
+    - data/log
+    - data/session
+
+post-deployment-remote-commands:
+  - php8.2-cli composer clear-config-cache
+  - php8.2-cli composer development-disable
+
+runtime:
+  cron-jobs: []

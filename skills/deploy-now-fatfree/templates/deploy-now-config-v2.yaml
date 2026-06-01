@@ -1,0 +1,22 @@
+# .deploy-now/<project>/config.yaml — Fat-Free Framework (F3)
+# Document root: ./ (root — index.php is at repo root)
+# Source: https://fatfreeframework.com/3.9/routing-engine
+
+bootstrap:
+  excludes:
+    - tests
+    - .editorconfig
+    - README.md
+    - composer.json
+    - composer.lock
+
+recurring:
+  excludes:
+    - tmp
+    - logs
+
+post-deployment-remote-commands:
+  - echo "F3 deployment complete"
+
+runtime:
+  cron-jobs: []

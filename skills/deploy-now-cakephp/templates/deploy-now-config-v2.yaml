@@ -1,0 +1,24 @@
+# .deploy-now/<project>/config.yaml — CakePHP
+# Document root: webroot/
+# Source: https://book.cakephp.org/5/en/installation.html
+
+bootstrap:
+  excludes:
+    - tests
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - tmp/cache
+    - tmp/logs
+    - tmp/sessions
+    - tmp/tests
+    - logs
+
+post-deployment-remote-commands:
+  - php8.2-cli bin/cake cache clear_all
+
+runtime:
+  cron-jobs: []

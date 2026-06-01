@@ -1,0 +1,23 @@
+# .deploy-now/<project>/config.yaml — Yii2
+# Document root: web/
+
+bootstrap:
+  excludes:
+    - tests
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - runtime/cache
+    - runtime/logs
+    - runtime/debug
+    - runtime/mail
+
+post-deployment-remote-commands:
+  - php8.2-cli yii cache/flush-all
+  - php8.2-cli yii migrate --interactive=0
+
+runtime:
+  cron-jobs: []

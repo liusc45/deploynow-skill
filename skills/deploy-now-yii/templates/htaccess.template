@@ -1,0 +1,14 @@
+# .deploy-now/<project>/.htaccess.template — Yii2 web directory
+# Source: https://www.yiiframework.com/doc/guide/2.0/en/start-installation
+
+Options +FollowSymLinks
+IndexIgnore */*
+
+RewriteEngine on
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php

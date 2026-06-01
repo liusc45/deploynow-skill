@@ -1,0 +1,7 @@
+# .deploy-now/<project>/.htaccess.template — Mezzio public directory
+# Source: https://docs.mezzio.dev/mezzio/
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

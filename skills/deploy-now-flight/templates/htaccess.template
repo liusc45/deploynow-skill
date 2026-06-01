@@ -1,0 +1,7 @@
+# .deploy-now/<project>/.htaccess.template — Flight PHP
+# Source: https://docs.flightphp.com/en/v3/install
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

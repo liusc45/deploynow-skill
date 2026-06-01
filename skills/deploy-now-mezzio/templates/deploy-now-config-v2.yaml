@@ -1,0 +1,23 @@
+# .deploy-now/<project>/config.yaml — Mezzio
+# Document root: public/
+# Source: https://docs.mezzio.dev/mezzio/
+
+bootstrap:
+  excludes:
+    - test
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - data/cache
+    - data/log
+    - data/config-cache.php
+
+post-deployment-remote-commands:
+  - php8.2-cli composer clear-config-cache
+  - php8.2-cli composer development-disable
+
+runtime:
+  cron-jobs: []

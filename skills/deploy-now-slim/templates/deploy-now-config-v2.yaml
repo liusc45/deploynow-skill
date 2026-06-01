@@ -1,0 +1,20 @@
+# .deploy-now/<project>/config.yaml — Slim 4
+# Document root: public/
+
+bootstrap:
+  excludes:
+    - tests
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - logs
+    - cache
+
+post-deployment-remote-commands:
+  - echo "Slim deployment complete"
+
+runtime:
+  cron-jobs: []

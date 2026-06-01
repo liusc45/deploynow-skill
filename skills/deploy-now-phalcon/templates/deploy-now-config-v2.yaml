@@ -1,0 +1,21 @@
+# .deploy-now/<project>/config.yaml — Phalcon
+# Document root: public/
+# IMPORTANT: Phalcon requires the phalcon PHP C extension — verify Deploy Now supports it.
+
+bootstrap:
+  excludes:
+    - tests
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - cache
+    - logs
+    - sessions
+
+post-deployment-remote-commands:
+  - echo "Phalcon deployment complete"
+
+runtime:
+  cron-jobs: []

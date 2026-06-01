@@ -1,0 +1,7 @@
+# .deploy-now/<project>/.htaccess.template — Slim 4 public directory
+# Source: https://www.slimframework.com/docs/v4/start/web-servers.html
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

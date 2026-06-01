@@ -1,0 +1,8 @@
+# .deploy-now/<project>/.htaccess.template — Phalcon root
+# Redirects all requests to public/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [L]
+    RewriteRule ((?s).*) public/$1 [L]
+</IfModule>

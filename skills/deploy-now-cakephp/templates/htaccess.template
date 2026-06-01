@@ -1,0 +1,8 @@
+# .deploy-now/<project>/.htaccess.template — CakePHP root
+# Redirects all requests to webroot/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ webroot/ [L]
+    RewriteRule (.*) webroot/$1 [L]
+</IfModule>

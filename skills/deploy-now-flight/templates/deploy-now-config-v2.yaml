@@ -1,0 +1,20 @@
+# .deploy-now/<project>/config.yaml — Flight PHP
+# Document root: public/ (or ./ if index.php is at root)
+
+bootstrap:
+  excludes:
+    - tests
+    - phpunit.xml.dist
+    - .editorconfig
+    - README.md
+
+recurring:
+  excludes:
+    - logs
+    - cache
+
+post-deployment-remote-commands:
+  - echo "Flight PHP deployment complete"
+
+runtime:
+  cron-jobs: []
