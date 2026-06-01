@@ -55,7 +55,7 @@ Read `workflows/validate-structure.md`. Run the checklist; report any failures.
 After the wizard finishes, Deploy Now commits `.github/workflows/<project>-build.yaml` to the repo. Pull the latest changes locally before continuing.
 
 ### 5. Customize the generated workflow
-Read `workflows/customize-generated-workflow.md`. Apply the snippets from `templates/workflow-customization.yaml` to the generated file (PHP version pin, extensions, composer flags).
+Read `workflows/customize-generated-workflow.md`. Apply the snippets from `templates/workflow-customization.md` to the generated file (PHP version pin, extensions, composer flags).
 
 ### 6. Add the runtime configuration files
 Create the following in the user's repo:
@@ -115,7 +115,7 @@ When invoked, produce:
 - `templates/env.template`
 - `templates/htaccess.template`
 - `templates/public-htaccess.template`
-- `templates/workflow-customization.yaml`
+- `templates/workflow-customization.md`
 - `references/deploy-now-overview.md`
 - `references/ci4-on-deploy-now.md`
 - `references/workflow-v1-vs-v2.md`

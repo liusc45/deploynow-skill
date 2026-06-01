@@ -14,7 +14,7 @@ The generated file contains placeholder steps that Deploy Now suggests based on 
 
 ## Snippets
 
-The full snippets live in `templates/workflow-customization.yaml`. Below is the minimum you must verify or insert.
+The full snippets live in `templates/workflow-customization.md`. Below is the minimum you must verify or insert.
 
 ### A. Setup PHP
 
